@@ -28,11 +28,11 @@ import com.cloudera.flume.core.EventSinkDecorator;
 import com.cloudera.util.Pair;
 import com.google.common.base.Preconditions;
 
-public class MultiplexDecorator<S extends EventSink> extends EventSinkDecorator<S> {
+public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecorator<S> {
   private final String serverName;
   private final String logType;
 
-  public MultiplexDecorator(S s, String serverName, String logType) {
+  public JsonMultiplexDecorator(S s, String serverName, String logType) {
     super(s);
 
     this.serverName = serverName;
@@ -60,7 +60,7 @@ public class MultiplexDecorator<S extends EventSink> extends EventSinkDecorator<
         Preconditions.checkArgument(argv.length == 2,
             "usage: multiplexDecorator(serverName, logType)");
 
-        return new MultiplexDecorator<EventSink>(null, argv[0], argv[1]);
+        return new JsonMultiplexDecorator<EventSink>(null, argv[0], argv[1]);
       }
     };
   }
@@ -69,7 +69,7 @@ public class MultiplexDecorator<S extends EventSink> extends EventSinkDecorator<
     List<Pair<String, SinkDecoBuilder>> builders = 
       new ArrayList<Pair<String, SinkDecoBuilder>>();
 
-    builders.add(new Pair<String, SinkDecoBuilder>("multiplexDecorator", builder()));
+    builders.add(new Pair<String, SinkDecoBuilder>("jsonMultiplexDecorator", builder()));
 
     return builders;
   }
