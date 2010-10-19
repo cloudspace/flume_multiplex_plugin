@@ -41,12 +41,13 @@ public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecora
     this.serverName = serverName;
     this.logType = logType;
 
-		LOG.setLevel(Level.DEBUG)
+		LOG.setLevel(Level.DEBUG);
   }
 
   @Override
   public void append(Event e) throws IOException {
-		LOG.debug("incoming event body: " + new String(e.getBody()))
+		LOG.debug("incoming event body: " + new String(e.getBody()));
+		
 		String body = new String(e.getBody()).replaceAll("\"", "\\\"");
 		LOG.debug("new body string: " + body);
 	
@@ -59,7 +60,7 @@ public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecora
     EventImpl e2 = new EventImpl(json.getBytes(),
         e.getTimestamp(), e.getPriority(), e.getNanos(), e.getHost(),
         e.getAttrs());
-		LOG.debug("new event: " + e2)
+		LOG.debug("new event: " + e2);
 
     super.append(e2);
   }
