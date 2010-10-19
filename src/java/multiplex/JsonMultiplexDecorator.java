@@ -43,7 +43,7 @@ public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecora
 
   @Override
   public void append(Event e) throws IOException {
-	String body = e.getBody().replaceAll("\"", "\\\"");
+	String body = new String(e.getBody()).replaceAll("\"", "\\\"");
 	
     String json = "{ \"server\": \"" + this.serverName + "\"," +
       "\"log_type\": \"" + this.logType + "\", " +
