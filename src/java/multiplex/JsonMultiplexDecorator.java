@@ -31,6 +31,7 @@ import com.cloudera.util.Pair;
 import com.google.common.base.Preconditions;
 
 public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecorator<S> {
+	static Logger LOG = Logger.getLogger(JsonMultiplexDecorator.class);
   private final String serverName;
   private final String logType;
 
@@ -39,19 +40,26 @@ public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecora
 
     this.serverName = serverName;
     this.logType = logType;
+
+		LOG.setLevel(Level.DEBUG)
   }
 
   @Override
   public void append(Event e) throws IOException {
-	String body = new String(e.getBody()).replaceAll("\"", "\\\"");
+		LOG.debug("incoming event body: " + new String(e.getBody()))
+		String body = new String(e.getBody()).replaceAll("\"", "\\\"");
+		LOG.debug("new body string: " + body);
 	
     String json = "{ \"server\": \"" + this.serverName + "\"," +
       "\"log_type\": \"" + this.logType + "\", " +
       "\"body\": \"" + body + "\" }";
+		LOG.debug("new json string: " + json);
+		LOG.debug("new json bytes: " + json.getBytes());
 
     EventImpl e2 = new EventImpl(json.getBytes(),
         e.getTimestamp(), e.getPriority(), e.getNanos(), e.getHost(),
         e.getAttrs());
+		LOG.debug("new event: " + e2)
 
     super.append(e2);
   }
