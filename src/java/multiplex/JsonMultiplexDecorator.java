@@ -47,9 +47,9 @@ public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecora
 	
     String json = "{ \"server\": \"" + this.serverName + "\"," +
       "\"log_type\": \"" + this.logType + "\", " +
-      "\"body\": \"" + new String(e.getBody()) + "\" }";
+      "\"body\": \"" + body + "\" }";
 
-    EventImpl e2 = new EventImpl(body.getBytes(),
+    EventImpl e2 = new EventImpl(json.getBytes(),
         e.getTimestamp(), e.getPriority(), e.getNanos(), e.getHost(),
         e.getAttrs());
 
