@@ -70,6 +70,14 @@ Using several nodes, 2 agents and a collector:
 	agent2: tail("/var/log/syslog") | { jsonMultiplexDecorator("test.com", "syslog") => agentSink("collector", 35872) }
 	collector: collectorSource(35872) | tcpSink("127.0.0.1", 12345)
 	
+Links
+-----
+
+* <http://www.cloudspace.com/>
+* <http://www.cloudera.com/>
+* [Flume User Guide](http://archive.cloudera.com/cdh/3/flume/UserGuide.html)
+* [Flume Source](http://github.com/cloudera/flume)
+
 Copyright
 ---------
 
