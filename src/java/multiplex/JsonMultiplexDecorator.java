@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.Level;
 
 import com.cloudera.flume.conf.Context;
 import com.cloudera.flume.conf.SinkFactory.SinkDecoBuilder;
