@@ -58,6 +58,8 @@
   </target>
 
   <target name="install" depends="jar">
+		<mkdir dir="/usr/local/flume" />
+		<mkdir dir="/usr/local/flume/plugins" />
     <copy file="cloudspace_multiplex_plugin.jar" todir="/usr/lib/flume/plugins/" />
   </target>
 </project>
