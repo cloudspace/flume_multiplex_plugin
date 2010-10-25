@@ -56,7 +56,7 @@ public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecora
 
     EventImpl e2 = new EventImpl(json.getBytes(),
         e.getTimestamp(), e.getPriority(), e.getNanos(), e.getHost(),
-        e.getAttrs());
+        e.getAttrs().clone());
 
     super.append(e2);
   }
