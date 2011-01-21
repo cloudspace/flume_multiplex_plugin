@@ -42,8 +42,6 @@ public class JsonMultiplexDecorator<S extends EventSink> extends EventSinkDecora
 
     this.serverName = serverName;
     this.logType = logType;
-
-		LOG.setLevel(Level.DEBUG);
   }
 
   @Override
